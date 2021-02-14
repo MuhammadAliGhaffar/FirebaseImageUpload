@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadImageFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+        <Button
+            android:id="@+id/btn_choose_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose file"
+            android:layout_marginStart="5dp"/>
+
+        <EditText
+            android:id="@+id/edt_filename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/btn_choose_image"
+            android:hint="Enter filename" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/btn_choose_image"
+            android:layout_above="@id/progressBar"
+            android:layout_marginTop="16dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btn_upload"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+        <Button
+            android:id="@+id/btn_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/txt_showUploads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show uploads"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/btn_upload"
+            android:layout_alignParentBottom="true"
+            android:layout_alignBaseline="@id/btn_upload"
+            android:layout_marginStart="25dp"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+
+</FrameLayout>
