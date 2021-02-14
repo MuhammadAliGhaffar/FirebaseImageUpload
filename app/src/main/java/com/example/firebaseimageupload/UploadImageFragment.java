@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.example.firebaseimageupload.Model.Upload;
@@ -92,7 +93,7 @@ public class UploadImageFragment extends Fragment {
         });
 
         txt_showUploads.setOnClickListener(v -> {
-
+            Navigation.findNavController(getView()).navigate(R.id.action_retrieveImageFragment_to_uploadImageFragment);
         });
 
     }
