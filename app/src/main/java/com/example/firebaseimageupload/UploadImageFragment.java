@@ -93,7 +93,7 @@ public class UploadImageFragment extends Fragment {
         });
 
         txt_showUploads.setOnClickListener(v -> {
-            Navigation.findNavController(getView()).navigate(R.id.action_retrieveImageFragment_to_uploadImageFragment);
+            Navigation.findNavController(getView()).navigate(R.id.action_uploadImageFragment_to_retrieveImageFragment);
         });
 
     }

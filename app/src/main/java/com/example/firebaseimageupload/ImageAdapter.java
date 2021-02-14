@@ -1,6 +1,7 @@
 package com.example.firebaseimageupload;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.firebaseimageupload.Model.Upload;
 
 import java.util.List;
@@ -26,25 +28,26 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.image_item, parent, false);
-        return new ImageViewHolder(v);
+        ImageViewHolder viewHolder = new ImageViewHolder(v);
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewName.setText(uploadCurrent.getName());
-//        Picasso.with(mContext)
-//                .load(uploadCurrent.getImageUrl())
-//                .fit()
-//                .centerCrop()
-//                .into(holder.imageView);
 
-        Glide
-                .with(mContext)
+        Log.i("INFOPIC", uploadCurrent.getImageUrl());
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .error(R.drawable.cancel);
+
+        Glide.with(mContext)
                 .load(uploadCurrent.getImageUrl())
-                .centerCrop()
-                .centerCrop()
+                .apply(options)
                 .into(holder.imageView);
+
     }
 
     @Override
