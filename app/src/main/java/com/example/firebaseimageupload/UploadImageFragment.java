@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,7 +113,10 @@ public class UploadImageFragment extends Fragment {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Upload upload = new Upload();
                             Handler handler = new Handler();
+                            upload.setName(edt_filename.getText().toString().trim());
+                            Log.i("TAGGG", taskSnapshot.getStorage().getDownloadUrl().toString());
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -120,10 +124,15 @@ public class UploadImageFragment extends Fragment {
                                 }
                             }, 500);
                             Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload(edt_filename.getText().toString().trim(),
-                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                            String uploadId = mDatabaseReference.push().getKey();
-                            mDatabaseReference.child(uploadId).setValue(upload);
+                            taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    upload.setImageUrl(uri.toString());
+                                    String uploadId = mDatabaseReference.push().getKey();
+                                    mDatabaseReference.child(uploadId).setValue(upload);
+                                }
+                            });
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

@@ -1,7 +1,6 @@
 package com.example.firebaseimageupload;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +36,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewName.setText(uploadCurrent.getName());
 
-        Log.i("INFOPIC", uploadCurrent.getImageUrl());
-
         RequestOptions options = new RequestOptions()
+                .placeholder(R.drawable.refresh)
+                .centerInside()
                 .centerCrop()
                 .error(R.drawable.cancel);
 

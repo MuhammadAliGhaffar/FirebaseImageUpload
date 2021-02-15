@@ -21,6 +21,9 @@ public class Upload {
     }
 
     public void setName(String name) {
+        if (name.trim().equals("")) {
+            name = "No name";
+        }
         mName = name;
     }
 
